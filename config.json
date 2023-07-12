@@ -1,7 +1,5 @@
 {
     "clientId" : "1123035256438661180",
     "embedColor" : "#0000FF",
-    "dbUser" : "",
-    "dbPassword" : "",
-    "dbHost" : ""
+    "auctionColor" : "#FF0000"
 }
