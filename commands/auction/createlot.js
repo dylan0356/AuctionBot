@@ -23,7 +23,6 @@ module.exports = {
             if (err) throw err;
             if (result) {
                 interaction.reply('You are banned from posting auctions!');
-                
             } else {
         
         itemSchema.findOne({
