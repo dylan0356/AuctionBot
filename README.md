@@ -23,6 +23,7 @@ node .
 - auctionban
 - auctionbans
 - auctionunban
+- purchases
 
 <br>
 
@@ -33,6 +34,7 @@ node .
 
 ### Screenshots
 
+![Screen Shot 2023-07-12 at 8 15 08 PM](https://github.com/dylan0356/AuctionBot/assets/33008329/fa8f2668-0190-450c-828f-2e7d87e077d2)
 ![Screen Shot 2023-07-12 at 6 37 25 PM](https://github.com/dylan0356/AuctionBot/assets/33008329/b526e2de-0316-4511-b191-857ec34cdc2d)
 ![Screen Shot 2023-07-12 at 6 38 19 PM](https://github.com/dylan0356/AuctionBot/assets/33008329/b82377a0-4397-47dc-8e32-eae4f040df57)
 ![Screen Shot 2023-07-12 at 6 39 11 PM](https://github.com/dylan0356/AuctionBot/assets/33008329/f14d42da-d6cb-4b8e-a6eb-60d629c9d9ee)
