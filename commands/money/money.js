@@ -22,9 +22,9 @@ module.exports = {
                         points: 10,
                     });
                     await newDoc.save();
-                    await interaction.reply(`You have *10*$!`);
+                    await interaction.reply({ content: `You have *10*$!`, ephemeral: true })
                 } else {
-                    await interaction.reply(`You have *${result.points}*$!`);
+                    await interaction.reply({ content: `You have *${result.points}*$!`, ephemeral: true });
                 }
             });
         } else {
@@ -40,9 +40,9 @@ module.exports = {
                         points: 10,
                     });
                     await newDoc.save();
-                    await interaction.reply(`${member.user.username} has *10*$!`);
+                    await interaction.reply({ content: `${member.user.username} has *10*$!`, ephemeral: true })
                 } else {
-                    await interaction.reply(`${member.user.username} has *${result.points}*$!`);
+                    await interaction.reply({ content: `${member.user.username} has *${result.points}*$!`, ephemeral: true });
                 }
             });
         }
