@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, PermissionsBitField, EmbedBuilder, MessageActionRow, ButtonBuilder, ButtonStyle, ActionRowBuilder, ComponentType } = require('discord.js');
 const pointSchema = require('../../models/points');
 const itemSchema = require('../../models/item');
+const purchasesSchema = require('../../models/purchases');
 const { auctionColor, auctionLog } = require('../../config.json');
 
 module.exports = {
@@ -174,6 +175,17 @@ module.exports = {
                                 guildId: interaction.guild.id,
                                 itemName: items[currentPage].itemName,
                             });
+
+                            //add the item to the purchases database
+                            await purchasesSchema.create({
+                                guildId: interaction.guild.id,
+                                itemName: items[currentPage].itemName,
+                                userId: i.user.id,
+                                itemName: items[currentPage].itemName,
+                                itemPrice: items[currentPage].itemPrice,
+                                itemSecret: items[currentPage].itemSecret,
+                            });
+                            
                             //log the purchase
                             const logEmb = new EmbedBuilder()
                                 .setTitle('Item Purchased')
