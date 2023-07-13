@@ -5,17 +5,21 @@
 - money
 - addmoney
 - delmoney
+
 <br>
+  
 - auction
 - auctionban
 - auctionbans
 - auctionunban
+
 <br>
+
 - createlot
 - deletelot
 - editlot
 - listlot
-<br>
+
 ### Screenshots
 
 ![Screen Shot 2023-07-12 at 6 37 25 PM](https://github.com/dylan0356/AuctionBot/assets/33008329/b526e2de-0316-4511-b191-857ec34cdc2d)
