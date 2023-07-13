@@ -1,7 +1,7 @@
 # AuctionBot
 
 ## Setup
-Fill out the .env file
+Fill out the .env file <br>
 Fill out the config.json file
 
 Run these commands in the directory:
