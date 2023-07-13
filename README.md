@@ -1,5 +1,16 @@
 # AuctionBot
 
+## Setup
+Fill out the .env file
+Fill out the config.json file
+
+Run these commands in the directory:
+```
+npm i
+node deploy-commands.js
+node .
+```
+
 ## Features
 ### Commands
 - money
