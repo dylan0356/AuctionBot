@@ -54,6 +54,7 @@ module.exports = {
                         },
                     ])
                     .setColor(auctionColor)
+                    .setFooter({ text: `Page ${i + 1} of ${items.length}`})
                     .setTimestamp()
                     .setThumbnail(sellerAvatar)
                 pages.push(page);
@@ -203,7 +204,7 @@ module.exports = {
                                     value: items[currentPage].itemSecret,
                                     inline: false,
                                 })
-                                .setFooter('Item Purchased')
+                                .setFooter( { text: `Page ${currentPage + 1} of ${items.length}`})
                                 .setTimestamp()
                                 .setColor(auctionColor)
 
