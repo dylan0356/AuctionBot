@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionsBitField, EmbedBuilder, MessageActionRow, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
+const { SlashCommandBuilder, PermissionsBitField, EmbedBuilder, MessageActionRow, ButtonBuilder, ButtonStyle, ActionRowBuilder, ComponentType } = require('discord.js');
 const pointSchema = require('../../models/points');
 const itemSchema = require('../../models/item');
 const { auctionColor, auctionLog } = require('../../config.json');
@@ -66,18 +66,18 @@ module.exports = {
                     new ButtonBuilder()
                         .setCustomId('previous')
                         .setLabel('Previous')
-                        .setStyle('PRIMARY'),
+                        .setStyle('Primary'),
                     new ButtonBuilder()
                         .setCustomId('buy')
                         .setLabel('Buy')
-                        .setStyle('PRIMARY'),
+                        .setStyle('Success'),
                     new ButtonBuilder()
                         .setCustomId('next')
                         .setLabel('Next')
-                        .setStyle('PRIMARY'),
+                        .setStyle('Secondary'),
                 );
             const msg = await interaction.reply({ embeds: [pages[0]], components: [row] });
-            const collector = msg.createMessageComponentCollector({ componentType: 'BUTTON', time: 60000 });
+            const collector = msg.createMessageComponentCollector({ componentType: ComponentType.Button, time: 60000 });
 
             let currentPage = 0;
             collector.on('collect', async i => {
@@ -176,12 +176,40 @@ module.exports = {
                             //log the purchase
                             const logEmb = new EmbedBuilder()
                                 .setTitle('Item Purchased')
-                                .setDescription(`Item: ${items[currentPage].itemName}\nBuyer: <@${i.user.id}>\nSeller: <@${items[currentPage].sellerId}>`)
-                                .setColor(auctionLog)
+                                .setDescription(`Item #${currentPage + 1}` + ` - ` + `${items[currentPage].itemName}`)
+                                .setThumbnail(sellerAvatar)
+                                .addFields({
+                                    name: 'Item Name',
+                                    value: items[currentPage].itemName,
+                                    inline: false,
+                                },
+                                {
+                                    name: 'Seller',
+                                    value: `<@${items[currentPage].sellerId}>`,
+                                    inline: true,
+                                },
+                                {
+                                    name: 'Buyer',
+                                    value: `<@${i.user.id}>`,
+                                    inline: true,
+                                },
+                                {
+                                    name: 'Item Price',
+                                    value: items[currentPage].itemPrice.toString() + '$',
+                                    inline: true,
+                                },
+                                {
+                                    name: 'Item Secret',
+                                    value: items[currentPage].itemSecret,
+                                    inline: false,
+                                })
+                                .setFooter('Item Purchased')
                                 .setTimestamp()
+                                .setColor(auctionColor)
+
                             //find log channel by logChannel as id
-                            const logChannel = await interaction.guild.channels.fetch(interaction.guild.settings.get('logChannel'));
-                            logChannel.send({ embeds: [logEmb] });
+                            const auctionLogChannel = await interaction.guild.channels.fetch(auctionLog);
+                            auctionLogChannel.send({ embeds: [logEmb] });
                         }
                     }
                 }   
