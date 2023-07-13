@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
 const pointSchema = require('../../models/points');
 const itemSchema = require('../../models/item');
+const bans = require('../../models/bans');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -15,6 +16,16 @@ module.exports = {
         const price = interaction.options.getInteger('price');
         const secret = interaction.options.getString('secret');
 
+        bans.findOne({
+            guildId: interaction.guild.id,
+            userId: interaction.user.id,
+        }, async (err, result) => {
+            if (err) throw err;
+            if (result) {
+                interaction.reply('You are banned from posting auctions!');
+                
+            } else {
+        
         itemSchema.findOne({
             guildId: interaction.guild.id,
             sellerId: interaction.user.id,
@@ -34,7 +45,10 @@ module.exports = {
                 await newItem.save();
                 await interaction.reply(`You have created a lot for **${item}** for **${price}**$!`);
             }
-        }
-        );    
+        });
+
+            }
+        });
+
     }
 };
